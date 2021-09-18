@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "794479705915",
+    "project_id": "infinite-home-e9c89",
+    "storage_bucket": "infinite-home-e9c89.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:794479705915:android:db83b0dc3b5f7aa8f7811e",
+        "android_client_info": {
+          "package_name": "com.example.infinitehome"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "794479705915-scj75ht1d68c59j28bick79ve91mhnhv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdPpa66r6ve2XJPLrMVIkuwwMdDxBGKd8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "794479705915-scj75ht1d68c59j28bick79ve91mhnhv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

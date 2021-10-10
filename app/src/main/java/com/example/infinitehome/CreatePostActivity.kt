@@ -90,8 +90,8 @@ class CreatePostActivity : AppCompatActivity() {
     private fun postButtonAction() {
         val text = createPostEditText.text.toString()
         if (text.isNotEmpty()) {
-//            exploreViewModel.addPost(this,imageUri,text)
-//            Toast.makeText(this,"Successfully uploaded...",Toast.LENGTH_SHORT).show()
+            exploreViewModel.addPost(this,imageUri,text)
+            Toast.makeText(this,"Successfully uploaded...",Toast.LENGTH_SHORT).show()
             finish()
         }
     }

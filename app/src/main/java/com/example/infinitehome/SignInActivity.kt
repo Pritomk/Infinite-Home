@@ -108,7 +108,8 @@ class SignInActivity : AppCompatActivity() {
     private fun updateUI(firebaseUser: FirebaseUser?) {
         if(firebaseUser != null) {
 
-            val user = User(firebaseUser.uid, firebaseUser.displayName!!, firebaseUser.photoUrl.toString())
+            val user = User(firebaseUser.displayName!!,
+                firebaseUser.photoUrl.toString(), firebaseUser.uid)
             val userDao = UserDao()
             userDao.addUser(user)
             val mainActivityIntent = Intent(this, MainActivity::class.java)

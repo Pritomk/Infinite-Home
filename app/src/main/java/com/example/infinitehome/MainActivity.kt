@@ -5,17 +5,21 @@ import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.get
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.infinitehome.databinding.ActivityMainBinding
+import com.example.infinitehome.ui.chat.ChatViewModel
+import com.example.infinitehome.ui.chat.ChatViewModelFactory
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var fab : FloatingActionButton
+    private lateinit var chatViewModel: ChatViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,8 +45,17 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
+
+        chatViewModel = ViewModelProvider(this,ChatViewModelFactory(application))[ChatViewModel::class.java]
+
+
         fab.setOnClickListener {
             startActivity(Intent(this,CreatePostActivity::class.java))
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        chatViewModel.readChats(application)
     }
 }

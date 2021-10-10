@@ -1,31 +1,32 @@
 package com.example.infinitehome.dao
 
-import android.app.ProgressDialog
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import android.util.Log
-import android.widget.Toast
+import android.widget.ImageView
+import androidx.core.content.ContextCompat.startActivity
+import com.bumptech.glide.Glide
+import com.example.infinitehome.models.Comment
 import com.example.infinitehome.models.Post
 import com.example.infinitehome.models.User
-import com.firebase.ui.firestore.FirestoreRecyclerOptions
+import com.example.infinitehome.ui.explore.PostAdapter
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Query
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.UploadTask
 import com.google.firebase.storage.ktx.storage
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
+import java.net.URL
 import java.text.SimpleDateFormat
 import java.util.*
 
 class PostDao {
 
     private val db = FirebaseFirestore.getInstance()
-    private val postCollection = db.collection("posts")
+    val postCollection = db.collection("posts")
     private val auth = Firebase.auth
     private lateinit var context: Context
 
@@ -40,32 +41,57 @@ class PostDao {
         postCollection.document().set(post)
     }
 
-    fun getPostById(postId: String): Task<DocumentSnapshot> {
+    private fun getPostById(postId: String): Task<DocumentSnapshot> {
         return postCollection.document(postId).get()
     }
 
     suspend fun updateLikes(postId: String) {
         val currentUserId = auth.currentUser!!.uid
         val post = getPostById(postId).await().toObject(Post::class.java)
-        val isLiked = post!!.likedBy.contains(currentUserId)
+        val likedBy = post!!.likedBy
+        val isLiked = likedBy.contains(currentUserId)
 
         if (isLiked) {
-            post.likedBy.remove(currentUserId)
+            likedBy.remove(currentUserId)
         } else {
-            post.likedBy.add(currentUserId)
+            likedBy.add(currentUserId)
         }
 
         postCollection.document(postId).set(post)
 
     }
 
+    suspend fun addComment(postId : String, comment: Comment) {
+        val post = getPostById(postId).await().toObject(Post::class.java)
+        post!!.comments
+
+        post.comments.add(comment)
+        postCollection.document(postId).set(post)
+    }
+
+    suspend fun getImageUri(postId: String) : Uri {
+        val post = getPostById(postId).await().toObject(Post::class.java)
+        val storage = Firebase.storage
+        val reference = storage.reference.child(post!!.imageReference)
+        Log.e("image_uri","Executed1")
+
+        reference.downloadUrl.addOnSuccessListener {
+            Log.e("image_uri",it.toString()+"")
+        }.addOnFailureListener {
+            Log.e("image_uri",it.message+"")
+        }.addOnCompleteListener {
+            Log.e("image_uri","Complete")
+        }
+
+        return reference.downloadUrl.result
+    }
 
     private fun imageUpload(imageUri: Uri): String {
         val storage = Firebase.storage
         val user = Firebase.auth.currentUser!!
 
         val path: String = user.uid
-        val referenceChild = "images/$path/${getTimeDate()}"
+        val referenceChild = "explore_images/$path/${getTimeDate()}"
         val reference = storage.reference.child(referenceChild)
         reference.putFile(imageUri)
             .addOnSuccessListener {

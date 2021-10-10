@@ -14,20 +14,23 @@ import kotlinx.coroutines.launch
 class ExploreViewModel(private val postRepository: PostRepository) : ViewModel() {
 
     fun addPost(proContext: Context, imageUri: Uri, text: String) {
-        viewModelScope.launch(Dispatchers.IO) {
+        GlobalScope.launch(Dispatchers.IO) {
             postRepository.addPost(proContext, imageUri, text)
         }
     }
 
-    fun updateLikes(postId : String) {
-        viewModelScope.launch {
+    fun updateLikes(postId: String) {
+        GlobalScope.launch {
             postRepository.updateLikes(postId)
         }
     }
 
-//    private val _text = MutableLiveData<String>().apply {
-//        value = "This is home Fragment"
-//    }
-//    val text: LiveData<String> = _text
+    fun getImageUri(postId: String) : Uri? {
+        var uri : Uri? = null
+        GlobalScope.launch {
+            uri = postRepository.getImageUri(postId)
+        }
+        return uri
+    }
 
 }

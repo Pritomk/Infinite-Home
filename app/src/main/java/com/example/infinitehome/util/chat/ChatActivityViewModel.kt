@@ -18,9 +18,9 @@ import com.google.firebase.ktx.Firebase
 class ChatActivityViewModel(application: Application,senderUid: String) : AndroidViewModel(application) {
 
     private var _chats : MutableLiveData<ArrayList<Chat>> = MutableLiveData<ArrayList<Chat>>()
-    val repository : ChatRepository
+    private val repository : ChatRepository
     private val TAG = "com.example.infinitehome.util.chat"
-    val userChatDao : UserChatDao
+    private val userChatDao : UserChatDao
 
     init {
         getIndividualChats(senderUid)

@@ -73,7 +73,6 @@ class ChatActivityAdapter(val context: Context) : RecyclerView.Adapter<ChatActiv
         val calendar = Calendar.getInstance()
         calendar.timeInMillis = timeStamp
         return format.format(calendar.time)
-
     }
 
     private fun setPostImage(child: String, context: Context, imageView: ImageView) {

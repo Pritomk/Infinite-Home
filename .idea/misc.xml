@@ -9,22 +9,26 @@
         <entry key="..\:/New folder/InfiniteHome/app/src/main/res/drawable/bg_reciever.xml" value="0.4" />
         <entry key="..\:/New folder/InfiniteHome/app/src/main/res/drawable/bg_sender.xml" value="0.2552083333333333" />
         <entry key="..\:/New folder/InfiniteHome/app/src/main/res/drawable/ic_attach.xml" value="0.2703125" />
+        <entry key="..\:/New folder/InfiniteHome/app/src/main/res/drawable/ic_like.xml" value="0.10885416666666667" />
         <entry key="..\:/New folder/InfiniteHome/app/src/main/res/drawable/ic_send.xml" value="0.2703125" />
         <entry key="..\:/New folder/InfiniteHome/app/src/main/res/layout/activity_chat.xml" value="0.264" />
         <entry key="..\:/New folder/InfiniteHome/app/src/main/res/layout/activity_comment.xml" value="0.264" />
         <entry key="..\:/New folder/InfiniteHome/app/src/main/res/layout/activity_create_post.xml" value="0.1" />
         <entry key="..\:/New folder/InfiniteHome/app/src/main/res/layout/activity_main.xml" value="0.17592592592592593" />
         <entry key="..\:/New folder/InfiniteHome/app/src/main/res/layout/activity_sign_in.xml" value="0.1" />
+        <entry key="..\:/New folder/InfiniteHome/app/src/main/res/layout/activity_status.xml" value="0.264" />
         <entry key="..\:/New folder/InfiniteHome/app/src/main/res/layout/all_chats_layout.xml" value="0.6" />
         <entry key="..\:/New folder/InfiniteHome/app/src/main/res/layout/comment_dialog_layout.xml" value="0.4" />
         <entry key="..\:/New folder/InfiniteHome/app/src/main/res/layout/comment_layout.xml" value="0.4" />
         <entry key="..\:/New folder/InfiniteHome/app/src/main/res/layout/fragment_chat.xml" value="0.264" />
         <entry key="..\:/New folder/InfiniteHome/app/src/main/res/layout/fragment_explore.xml" value="0.1" />
         <entry key="..\:/New folder/InfiniteHome/app/src/main/res/layout/fragment_setting.xml" value="0.1" />
+        <entry key="..\:/New folder/InfiniteHome/app/src/main/res/layout/fragment_status.xml" value="0.25416666666666665" />
         <entry key="..\:/New folder/InfiniteHome/app/src/main/res/layout/fragment_try_ar.xml" value="0.1" />
         <entry key="..\:/New folder/InfiniteHome/app/src/main/res/layout/left_chat_layout.xml" value="0.4" />
         <entry key="..\:/New folder/InfiniteHome/app/src/main/res/layout/post_layout.xml" value="0.4" />
         <entry key="..\:/New folder/InfiniteHome/app/src/main/res/layout/right_chat_layout.xml" value="0.264" />
+        <entry key="..\:/New folder/InfiniteHome/app/src/main/res/layout/status_item.xml" value="0.4" />
         <entry key="..\:/New folder/InfiniteHome/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
       </map>
     </option>

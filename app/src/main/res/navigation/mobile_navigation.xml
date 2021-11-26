@@ -12,10 +12,10 @@
         tools:layout="@layout/fragment_explore" />
 
     <fragment
-        android:id="@+id/navigation_try_ar"
-        android:name="com.example.infinitehome.ui.tryAr.TryArFragment"
-        android:label="@string/title_try_ar"
-        tools:layout="@layout/fragment_try_ar" />
+        android:id="@+id/navigation_status"
+        android:name="com.example.infinitehome.ui.status.StatusFragment"
+        android:label="@string/title_status"
+        tools:layout="@layout/fragment_status" />
 
     <fragment
         android:id="@+id/navigation_chat"

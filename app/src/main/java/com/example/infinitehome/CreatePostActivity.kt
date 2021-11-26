@@ -19,9 +19,12 @@ import com.example.infinitehome.models.Post
 import com.example.infinitehome.repositories.PostRepository
 import com.example.infinitehome.ui.explore.ExploreViewModel
 import com.example.infinitehome.ui.explore.ExploreViewModelFactory
+import com.example.infinitehome.ui.status.StatusViewModel
+import com.example.infinitehome.ui.status.StatusViewModelFactory
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.UploadTask
 import com.google.firebase.storage.ktx.storage
@@ -38,6 +41,9 @@ class CreatePostActivity : AppCompatActivity() {
     private lateinit var imageUri: Uri
     private lateinit var user: FirebaseUser
     private lateinit var exploreViewModel: ExploreViewModel
+    private lateinit var from_fragment: String
+    private lateinit var statusViewModel: StatusViewModel
+    private val TAG = "add_status"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,14 +51,24 @@ class CreatePostActivity : AppCompatActivity() {
         binding = ActivityCreatePostBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        from_fragment = intent.getStringExtra("from_fragment").toString()
+
+
+
         val postDao = PostDao()
         val postRepository = PostRepository(postDao)
 
         exploreViewModel = ViewModelProvider(this,ExploreViewModelFactory(postRepository)).get(ExploreViewModel::class.java)
+        statusViewModel = ViewModelProvider(this,
+            StatusViewModelFactory(Firebase.auth.currentUser!!.uid)).get(StatusViewModel::class.java)
 
         createPostImageView = binding.createPostImageView
         createPostEditText = binding.createPostEditText
         createPostButton = binding.createPostButton
+
+        if (from_fragment == "StatusFragment") {
+            createPostButton.text = "Add Status"
+        }
 
         user = FirebaseAuth.getInstance().currentUser!!
 
@@ -61,9 +77,14 @@ class CreatePostActivity : AppCompatActivity() {
         }
 
         createPostButton.setOnClickListener {
-            postButtonAction()
+            if (from_fragment == "StatusFragment") {
+                addStatusFunc()
+            } else {
+                addPostFunc()
+            }
         }
     }
+
 
     private fun imagePicker() {
         ImagePicker.with(this)
@@ -87,13 +108,19 @@ class CreatePostActivity : AppCompatActivity() {
     }
 
 
-    private fun postButtonAction() {
+    private fun addPostFunc() {
         val text = createPostEditText.text.toString()
         if (text.isNotEmpty()) {
             exploreViewModel.addPost(this,imageUri,text)
             Toast.makeText(this,"Successfully uploaded...",Toast.LENGTH_SHORT).show()
             finish()
         }
+    }
+
+
+    private fun addStatusFunc() {
+        Log.e(TAG,"Execute 1")
+        statusViewModel.addStatus(imageUri)
     }
 
 //    private fun getImage(child : String) {

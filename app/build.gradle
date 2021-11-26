@@ -105,4 +105,8 @@ dependencies {
     //coroutines dependency
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.1'
+
+    //Stories progress view dependency
+    implementation 'com.github.shts:StoriesProgressView:3.0.0'
+
 }
